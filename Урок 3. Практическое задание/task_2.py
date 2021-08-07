@@ -20,3 +20,20 @@
 Обязательно усложните задачу! Добавьте сохранение хеша в файле и получение его из файла.
 А если вы знаете как через Python работать с БД, привяжите к заданию БД и сохраняйте хеши там.
 """
+
+
+import hashlib
+
+login = input('Введите логин: ')
+passwd = input('Введите пароль: ')
+hash_obj = hashlib.sha256(login.encode() + passwd.encode()).hexdigest()
+with open("hash", "w+", encoding="utf-8") as file:
+    file.write(hash_obj)
+with open('hash', 'r', ) as s:
+    print('В фале хранится строка :', *s)
+password_verification = input('Введите пароль еще раз для проверки: ')
+hash_obj_2 = hashlib.sha256(login.encode() + password_verification.encode()).hexdigest()
+if hash_obj == hash_obj_2:
+    print('Вы ввели правильный пароль')
+else:
+    print('Пароли не совпадают')
