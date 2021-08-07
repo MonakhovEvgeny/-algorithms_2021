@@ -16,3 +16,28 @@
 р
 а
 """
+
+
+import hashlib
+
+s = 'papa'
+substring_hash = set()
+substring = []
+
+for i in range(len(s)):
+
+    letters = (s[i])
+
+    substring.append(letters)
+    substring_hash.add(hashlib.sha256(letters.encode()).hexdigest())
+
+    for j in range(i, len(s) - 1):
+        letters = letters + str((s[j + 1]))
+
+        if letters != s:
+            substring.append(letters)
+            substring_hash.add(hashlib.sha256(letters.encode()).hexdigest())
+
+print(substring_hash)
+print(substring)
+print(f'Уникальных подстрок - {len(substring_hash)}')
